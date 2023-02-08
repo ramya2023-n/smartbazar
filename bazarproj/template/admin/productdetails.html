@@ -1,0 +1,46 @@
+
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Tabels</li>
+            </ol>
+<div class="agile-grids">   
+                <!-- tables -->
+                
+                <div class="agile-tables">
+                    <div class="w3l-table-info">
+                      <h2>PRODUCT DETAILS</h2>
+                        <table id="table"  border="2">
+                        <thead>
+                          <tr  data-expanded="true">
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Old price</th>
+                            <th>New price</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Catagory</th>
+                          </tr>
+                        </thead>
+                        {% for i in d %}
+                        <tbody>
+                          <tr>
+                            <td>{{i.id}}</td>
+                          <td>{{i.Productname}}</td>
+                            <td>{{i.Oldprice}}</td>
+                            <td>{{i.Newprice}}</td>
+                            <td>{{i.Description}}</td>
+                            <td><img src="{{i.Image.url}}" style="width:70px;height: 70px;object-fit: contain;" data-src="{{i.Image.url}}" alt="" class="img-responsive"></td>
+                            <td>{{i.Catagory}}</td>
+                            <td><a href="/product_update/?prodid={{i.id}}"><i class="fa fa-edit">edit</i></a></td>
+                            <td><a href="/product_delete/?prodid={{i.id}}"><i class="fa fa-trash">delete</i></a></td>
+                            </tr>
+                          </tbody>
+                        {% endfor %}
+                      </table>
+                    </div> 
+                </div></div>
+
+                {% endblock %}
+                  
+                        

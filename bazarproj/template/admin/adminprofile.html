@@ -1,0 +1,55 @@
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Tabels</li>
+            </ol>
+
+					  <section id="main-content">
+	<section class="wrapper">
+		<div class="table-agile-info">
+ <div class="panel panel-default">
+    <div class="panel-heading">
+    Admin Profile
+    </div>
+    <div>
+      <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+        <thead>
+          <tr>
+            <th data-breakpoints="xs">ID</th>
+                <th>Name</th>
+				<th>email</th>
+				<th>password</th>
+				<th>contact</th>
+				<th>image</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in d1 %}
+          <tr data-expanded="true">
+      <td>{{i.adminname}}</td>
+			<td>{{i.email}}</td>
+			<td>{{i.password}}</td>
+			<td>{{i.contact}}</td>
+			<td><img src="{{i.image.url}}" alt="" style="width: 90px;height: 90px;"></td>
+			<td><i class="fa fa-edit"><a href="/adeditprofile/" >Edit Profile</a></i></td>
+            </tr>
+           {% endfor %}
+      
+        </tbody>
+      </table>
+    </div>
+</div>
+</section>
+
+</section>
+		{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script > 
+function ajaxview()
+{
+  var aid=document.getElementById('adminid').value;
+  $.ajax({
+
+        url:'/ajaxview/',
+        data:
+        {
+          'adminid':aid
+        },
+        datatype: 'json',
+        success: function(data)
+        {
+          document.getElementById("adminname").innerHTML=data.aa;
+          document.getElementById("email").innerHTML=data.bb;
+          document.getElementById("password").innerHTML=data.cc;
+        }
+
+
+      });
+}
+</script> 
+
+<!--sidebar end-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <div class="table-agile-info">
+ <div class="panel panel-default">
+    <div class="panel-heading">
+    Details
+    
+    </div>
+Select Admin
+  <div class="select_catagory">
+      <select class="select" name="s1" id="adminid" onchange="ajaxview();">
+        <option>Select Admin</option>
+       {% for i in data1 %}
+        <option value="{{i.id}}">{{i.adminname}}</option>
+           {% endfor %}
+
+        </select>
+       
+  </div>
+  <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+        <thead>
+          <tr>
+         
+            <th> Name</th>
+            <th>email</th>
+            <th>password</th>
+            
+           
+          </tr>
+        </thead>
+        <tbody>
+         
+          <tr data-expanded="true">
+   
+            <td id="adminname"></td>
+         
+            <td id="email"></td>
+            <td id="password"></td>
+          </tr>
+        </tbody>
+      </table>
+       </section>
+{% endblock %}

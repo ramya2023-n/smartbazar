@@ -1,0 +1,85 @@
+{% extends 'headerfooter.html' %}
+{% block content %}
+<!--sidebar end-->
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper">
+    <div class="table-agile-info">
+ <div class="panel panel-default">
+    <div class="panel-heading">
+     cart
+    </div>
+    {% if data2 %}
+    <div>
+      <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+       <thead>
+          <tr>
+            <th data-breakpoints="xs">ID</th>
+            <th> image</th>
+            <th>product name</th>
+            <th>quantity</th>
+            <th>price</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in data2 %}
+           
+          <tr data-expanded="true">
+            <td>{{forloop.counter}}</td>
+            <td><img src="{{i.pid.image.url}}" style="width: 200px;height: 200px;"></td>
+            <td>{{i.pid.productname}}</td>
+            <td><form action="/cart_update/?cid={{i.id}}" method="POST">
+            {% csrf_token %} <select class="select" name="qty" onchange="this.form.submit()">
+                  <option selected value="{{i.quantity}}">{{i.quantity}}</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+
+
+                </select>
+</form>
+
+
+
+
+             
+           <td>{{i.total}}</td>
+           
+            <td><a href="/cart_delete/?cid={{i.id}}"><i class="fa fa-trash">Remove</i></a></td>
+           
+            </tr>
+            
+           {% endfor %}
+           <tr>
+             <td>grand total: {{total}}</td>
+             <td colspan="6" style="float:right;"><a href="/payment/?gt={{total}}" class="btn btn-info" role="button">Proceed By Cart</a></td>
+           </tr>
+          
+        </tbody>
+      </table>
+      {% else %}
+  <p>No Item In Cart</p>
+  {% endif %}
+    </div>
+           <a href="/" class="btn btn-info" role="button"> continue shopping</a>
+           
+          <!--   <a href="/payment/"><input type="submit" value="check out"></a> -->
+  
+
+  </div>
+</div>
+</section>
+</section>
+</section>
+{% endblock %}

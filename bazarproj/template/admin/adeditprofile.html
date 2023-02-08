@@ -1,0 +1,71 @@
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+
+	<div class="login">
+		<div class="main-agileits">
+				<div class="form-w3agile form1">
+					<h3>EDIT HERE....</h3>
+					{% for x in data1 %}
+					<form action="/adeditprofile/" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+						<div class="key">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<input  type="text" value="{{x.adminname}}" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" required="">
+							<div class="clearfix"></div>
+						</div>
+						<div class="key">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<input  type="text" value="{{x.email}}" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+							<div class="clearfix"></div>
+						</div>
+						<div>
+							<div class="form-group">
+                                    <label for="exampleInput"></label>
+                                    <img src="{{x.image.url}}" style="width:100px;height: 100px;" name="img1">
+                               </div>
+
+
+                               <div class="form-group">
+                                    <label for="exampleInput">Do you want to update image?</label>
+                                    <input type="radio"  name="imgup" onchange="hide()" id="imgup" value="yes"> yes
+                                    <input type="radio"  name="imgup" onchange="hide()"  value="no" checked> no
+
+                                </div>
+                                 <div class="form-group" id="filediv" style="display: none;">
+                                    <label for="exampleInput">image</label>
+                                    <input type="file" id="img" name="image">
+                                </div>
+
+
+
+							
+
+                                </div>					
+                                <div class="key">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+							<input  type="password" value="{{x.password}}" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+							<div class="clearfix"></div>
+						</div>
+                         {% endfor %}
+						
+						<input type="submit" value="Update Profile">
+					</form>
+				</div>
+				
+			</div>
+		</div>
+<script type="text/javascript">
+        function hide(){
+        var chkYes = document.getElementById("imgup");
+        var filediv = document.getElementById("filediv");
+        filediv.style.display = chkYes.checked ? "block" : "none";
+        if (chkYes.checked){
+        var img = document.getElementById("img").required = true;
+        }
+        else{
+        var img = document.getElementById("img").required = false;
+        }
+
+        }
+    </script>
+{% endblock %}

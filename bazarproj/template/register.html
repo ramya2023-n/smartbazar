@@ -1,0 +1,40 @@
+
+{% extends 'headerfooter.html' %}
+{% block content %}
+		
+	<h6>{{error}}</h6>
+	<h6>{{error1}}</h6>
+	<!-- sign up-page -->
+	<div class="login-page">
+		<div class="container"> 
+			<h3 class="w3ls-title w3ls-title1">Create your account</h3>  
+			<div class="login-body">
+				<form action="/register/" method="post">
+					{% csrf_token %}
+					<input type="text" class="user" name="name" placeholder="Enter your Name" required="">
+					<input type="text" class="user" name="email" placeholder="Enter your email" required="">
+					<input type="password" name="password" class="lock" placeholder="Password" required="">
+					<input type="password" name="cpassword" class="lock" placeholder="Confirm Password" required="">
+					<input type="submit" value="Sign Up ">
+					<div class="forgot-grid">
+						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
+						<div class="forgot">
+							<a href="#">Forgot Password?</a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</form>
+			</div>  
+			<h6>Already have an account? <a href="login.html">Login Now »</a> </h6>  
+		</div>
+	</div>
+	<!-- //sign up-page --> 
+	<!-- footer-top -->
+	<div class="w3agile-ftr-top">
+		<div class="container">
+			<div class="ftr-toprow">
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div> 
+					{% endblock %}

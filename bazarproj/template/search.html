@@ -1,0 +1,76 @@
+{% extends 'headerfooter.html' %}
+{% block content %}
+ <!--banner-->
+<div class="banner-top">
+  <div class="container">
+  {% for x in data1 %}  
+
+    <h3 style="text-transform: capitalize;">{{x.Productname}}</h3>
+    <h4 style="text-transform: capitalize;"> <a href="/">Home</a><label>/</label>{{x.Productname}}</h4>
+    <div class="clearfix"> </div>
+  </div>
+</div>
+    <div class="single">
+      <div class="container">
+            <div class="single-top-main">
+        <div class="col-md-5 single-top">
+        <div class="single-w3agile">
+              
+<div id="picture-frame">
+      <img src="{{x.Image.url}}" style="width:700px;height: 700px;object-fit: contain;" data-src="{{x.Image.url}}" alt="" class="img-responsive"/>
+    </div>
+                    <script src="/static/js/jquery.zoomtoo.js"></script>
+                <script>
+      $(function() {
+        $("#picture-frame").zoomToo({
+          magnify: 1
+        });
+      });
+    </script>
+    
+    
+    
+      </div>
+      </div>
+      <div class="col-md-7 single-top-left ">
+                <div class="single-right">
+        <h3>{{x.Productname}}</h3>
+        
+          
+         <div class="pr-single">
+          <p class="reduced "><del>${{x.Oldprice}}</del>${{x.Newprice}}</p>
+        </div>
+        <div class="block block-w3">
+          <div class="starbox small ghosting"> </div>
+        </div>
+        <p class="in-pa"> {{x.Description}}</p>
+          
+        <ul class="social-top">
+          <li><a href="#" class="icon facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+          <li><a href="#" class="icon twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span></span></a></li>
+          <li><a href="#" class="icon pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i><span></span></a></li>
+          <li><a href="#" class="icon dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i><span></span></a></li>
+        </ul>
+          <div class="add add-3">
+            <form action="/addtocart/?pid={{x.id}}" method="POST">
+              {% csrf_token %}
+                       <button class="btn btn-danger my-cart-btn my-cart-b" type="submit">Add to Cart</button>
+                     </form>
+                    </div>
+        
+         
+         
+      <div class="clearfix"> </div>
+      </div>
+     
+
+      </div>
+       <div class="clearfix"> </div>
+     </div> 
+         
+        
+  </div>
+</div>
+{% endfor %}
+  
+{% endblock %}
